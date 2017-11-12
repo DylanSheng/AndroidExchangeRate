@@ -19,12 +19,12 @@ public class ExchangeRateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_exchange_rate);
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.exchange_rate_layout);
-        SwipeLayout swipeLayout = (SwipeLayout)findViewById(R.id.swipe_layout);
-        swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
+        //SwipeLayout swipeLayout = (SwipeLayout)findViewById(R.id.swipe_layout);
+        //swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
 
 //add drag edge.(If the BottomView has 'layout_gravity' attribute, this line is unnecessary)
-        swipeLayout.addDrag(SwipeLayout.DragEdge.Left, findViewById(R.id.bottom_wrapper));
-
+        //swipeLayout.addDrag(SwipeLayout.DragEdge.Left, findViewById(R.id.bottom_wrapper));
+/*
         swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
             @Override
             public void onClose(SwipeLayout layout) {
@@ -55,6 +55,6 @@ public class ExchangeRateActivity extends Activity {
             public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
                 //when user's hand released.
             }
-        });
+        });*/
     }
 }

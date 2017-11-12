@@ -1,9 +1,12 @@
 package com.dylansheng.android.exchangerate.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +16,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewStub;
+import android.widget.LinearLayout;
+import android.widget.ViewFlipper;
 
 import com.dylansheng.android.exchangerate.Currency.Currency;
 import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
@@ -92,6 +98,8 @@ public class MainActivity extends AppCompatActivity
             Runnable r = new MyThread();
             new Thread(r).start();
 
+            ViewFlipper vf = (ViewFlipper)findViewById(R.id.vf);
+            vf.setDisplayedChild(1);
             //Intent intent = new Intent(MainActivity.this, ExchangeRateActivity.class);
             //startActivity(intent);
         } else if (id == R.id.nav_gallery) {
