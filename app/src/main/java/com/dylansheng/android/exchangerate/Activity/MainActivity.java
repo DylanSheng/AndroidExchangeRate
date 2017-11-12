@@ -14,8 +14,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dylansheng.android.exchangerate.Currency.Currency;
 import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
+import com.dylansheng.android.exchangerate.DataProcessing.ParseJSON;
 import com.dylansheng.android.exchangerate.R;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -111,6 +115,9 @@ public class MainActivity extends AppCompatActivity
         public void run() {
             try {
                 String response = FixerIO.GetReferenceRates("https://api.fixer.io/latest");
+                JSONObject obj = new JSONObject(response);
+                Currency currency = ParseJSON.ParseFixerIOReferenceRate(obj);
+                int x = 0;
             } catch (Exception e) {
                 e.printStackTrace();
             }

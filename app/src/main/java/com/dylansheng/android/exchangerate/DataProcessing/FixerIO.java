@@ -1,8 +1,5 @@
 package com.dylansheng.android.exchangerate.DataProcessing;
 
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
@@ -23,7 +20,6 @@ public class FixerIO {
         }catch ( Exception ex ) {
             ex.printStackTrace();
         }
-
 
         return content;
     }
