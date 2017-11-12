@@ -1,4 +1,4 @@
-package com.dylansheng.android.exchangerate;
+package com.dylansheng.android.exchangerate.Activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.widget.LinearLayout;
 
 import com.daimajia.swipe.SwipeLayout;
+import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
+import com.dylansheng.android.exchangerate.R;
 
 /**
  * Created by dsheng on 09/11/2017.

@@ -1,4 +1,4 @@
-package com.dylansheng.android.exchangerate;
+package com.dylansheng.android.exchangerate.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
+import com.dylansheng.android.exchangerate.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,6 +85,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_exchange_rate) {
+            try {
+                String response = FixerIO.GetReferenceRates("https://api.fixer.io/latest");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            int x=0;
             //Intent intent = new Intent(MainActivity.this, ExchangeRateActivity.class);
             //startActivity(intent);
         } else if (id == R.id.nav_gallery) {
