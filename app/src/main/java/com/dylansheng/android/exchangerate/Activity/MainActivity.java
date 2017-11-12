@@ -85,12 +85,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_exchange_rate) {
-            try {
-                String response = FixerIO.GetReferenceRates("https://api.fixer.io/latest");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            int x=0;
+            Runnable r = new MyThread();
+            new Thread(r).start();
+
             //Intent intent = new Intent(MainActivity.this, ExchangeRateActivity.class);
             //startActivity(intent);
         } else if (id == R.id.nav_gallery) {
@@ -108,5 +105,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public class MyThread implements Runnable {
+        public void run() {
+            try {
+                String response = FixerIO.GetReferenceRates("https://api.fixer.io/latest");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

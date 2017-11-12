@@ -1,7 +1,6 @@
 package com.dylansheng.android.exchangerate.DataProcessing;
 
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -14,18 +13,18 @@ import java.util.Scanner;
 
 public class FixerIO {
     public static String GetReferenceRates(String url) throws Exception {
-        URL Url = new URL(url);
-        URLConnection yc = Url.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-        String inputLine;
-        String str = new String();
-        while ((inputLine = in.readLine()) != null)
-        {
-            str = str.concat(inputLine);
+        String content = null;
+        URLConnection connection = null;
+        try {
+            connection =  new URL(url).openConnection();
+            Scanner scanner = new Scanner(connection.getInputStream());
+            scanner.useDelimiter("\\Z");
+            content = scanner.next();
+        }catch ( Exception ex ) {
+            ex.printStackTrace();
         }
-        JSONObject obj = new JSONObject(str);
 
 
-        return str;
+        return content;
     }
 }
