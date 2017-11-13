@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -100,6 +102,19 @@ public class MainActivity extends AppCompatActivity
 
             ViewFlipper vf = (ViewFlipper)findViewById(R.id.vf);
             vf.setDisplayedChild(1);
+
+            //RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+            // use this setting to improve performance if you know that changes
+            // in content do not change the layout size of the RecyclerView
+            //mRecyclerView.setHasFixedSize(true);
+
+            // use a linear layout manager
+            LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+            //mRecyclerView.setLayoutManager(mLayoutManager);
+
+            // specify an adapter (see also next example)
+            //mAdapter = new MyAdapter(myDataset);
+            //mRecyclerView.setAdapter(mAdapter);
             //Intent intent = new Intent(MainActivity.this, ExchangeRateActivity.class);
             //startActivity(intent);
         } else if (id == R.id.nav_gallery) {
