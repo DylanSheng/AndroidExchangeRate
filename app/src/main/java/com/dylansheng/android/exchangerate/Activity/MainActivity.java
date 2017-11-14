@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 
 import com.dylansheng.android.exchangerate.Currency.Currency;
+import com.dylansheng.android.exchangerate.CustomizedAdapter.ExchangeRateVerticleAdaptor;
 import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
 import com.dylansheng.android.exchangerate.DataProcessing.ParseJSON;
 import com.dylansheng.android.exchangerate.R;
@@ -97,11 +98,24 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_exchange_rate) {
-            Runnable r = new MyThread();
-            new Thread(r).start();
+            //Runnable r = new MyThread();
+            //new Thread(r).start();
 
             ViewFlipper vf = (ViewFlipper)findViewById(R.id.vf);
             vf.setDisplayedChild(1);
+
+
+            String[] data = { "Apple", "Banana", "Orange", "Watermelon",
+                    "Pear", "Grape", "Pineapple", "Strawberry", "Cherry", "Mango" };
+
+            ExchangeRateVerticleAdaptor adapter = new ExchangeRateVerticleAdaptor(data);
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_1);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.setAdapter(adapter);
+
+
+
 
             //RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
             // use this setting to improve performance if you know that changes
@@ -109,7 +123,7 @@ public class MainActivity extends AppCompatActivity
             //mRecyclerView.setHasFixedSize(true);
 
             // use a linear layout manager
-            LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+            //LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
             //mRecyclerView.setLayoutManager(mLayoutManager);
 
             // specify an adapter (see also next example)
