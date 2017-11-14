@@ -1,14 +1,10 @@
 package com.dylansheng.android.exchangerate.Activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,12 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewStub;
-import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 
 import com.dylansheng.android.exchangerate.Currency.Currency;
-import com.dylansheng.android.exchangerate.CustomizedAdapter.ExchangeRateVerticleAdaptor;
+import com.dylansheng.android.exchangerate.CustomizedAdapter.ExchangeRateVerticalAdaptor;
 import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
 import com.dylansheng.android.exchangerate.DataProcessing.ParseJSON;
 import com.dylansheng.android.exchangerate.R;
@@ -104,17 +98,31 @@ public class MainActivity extends AppCompatActivity
             ViewFlipper vf = (ViewFlipper)findViewById(R.id.vf);
             vf.setDisplayedChild(1);
 
+            String[] data = {"AUD","BGN","BRL","CAD","CHF","CNY","CZK","DKK","GBP","HKD","HRK","HUF","IDR","ILS","INR","JPY","KRW","MXN","MYR","NOK","NZD","PHP","PLN","RON","RUB","SEK","SGD","THB","TRY","USD","ZAR" };
 
-            String[] data = { "Apple", "Banana", "Orange", "Watermelon",
-                    "Pear", "Grape", "Pineapple", "Strawberry", "Cherry", "Mango" };
+            ExchangeRateVerticalAdaptor adapter1 = new ExchangeRateVerticalAdaptor(data);
+            RecyclerView recyclerView1 = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_1);
+            RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getApplicationContext());
+            recyclerView1.setLayoutManager(mLayoutManager1);
+            recyclerView1.setAdapter(adapter1);
 
-            ExchangeRateVerticleAdaptor adapter = new ExchangeRateVerticleAdaptor(data);
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_1);
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-            recyclerView.setLayoutManager(mLayoutManager);
-            recyclerView.setAdapter(adapter);
+            ExchangeRateVerticalAdaptor adapter2 = new ExchangeRateVerticalAdaptor(data);
+            RecyclerView recyclerView2 = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_2);
+            RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
+            recyclerView2.setLayoutManager(mLayoutManager2);
+            recyclerView2.setAdapter(adapter2);
 
+            ExchangeRateVerticalAdaptor adapter3 = new ExchangeRateVerticalAdaptor(data);
+            RecyclerView recyclerView3 = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_3);
+            RecyclerView.LayoutManager mLayoutManager3 = new LinearLayoutManager(getApplicationContext());
+            recyclerView3.setLayoutManager(mLayoutManager3);
+            recyclerView3.setAdapter(adapter3);
 
+            ExchangeRateVerticalAdaptor adapter4 = new ExchangeRateVerticalAdaptor(data);
+            RecyclerView recyclerView4 = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_4);
+            RecyclerView.LayoutManager mLayoutManager4 = new LinearLayoutManager(getApplicationContext());
+            recyclerView4.setLayoutManager(mLayoutManager4);
+            recyclerView4.setAdapter(adapter4);
 
 
             //RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);

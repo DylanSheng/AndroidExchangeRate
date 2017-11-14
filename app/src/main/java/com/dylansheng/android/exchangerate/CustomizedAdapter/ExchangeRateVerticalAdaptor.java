@@ -1,6 +1,5 @@
 package com.dylansheng.android.exchangerate.CustomizedAdapter;
 
-import android.media.session.PlaybackState;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,13 +9,11 @@ import android.widget.TextView;
 
 import com.dylansheng.android.exchangerate.R;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by sheng on 2017-11-13.
  */
 
-public class ExchangeRateVerticleAdaptor extends RecyclerView.Adapter<ExchangeRateVerticleAdaptor.ViewHolder>{
+public class ExchangeRateVerticalAdaptor extends RecyclerView.Adapter<ExchangeRateVerticalAdaptor.ViewHolder>{
     private static final String TAG = "CustomAdapter";
 
     private String[] mDataSet;
@@ -25,7 +22,7 @@ public class ExchangeRateVerticleAdaptor extends RecyclerView.Adapter<ExchangeRa
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Create a new view.
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.text_row_item, parent, false);
+                .inflate(R.layout.ex_rate_scroll_control_textitem, parent, false);
 
         return new ViewHolder(v);
     }
@@ -68,7 +65,7 @@ public class ExchangeRateVerticleAdaptor extends RecyclerView.Adapter<ExchangeRa
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
 
-    public ExchangeRateVerticleAdaptor(String[] dataSet) {
+    public ExchangeRateVerticalAdaptor(String[] dataSet) {
         mDataSet = dataSet;
     }
 }
