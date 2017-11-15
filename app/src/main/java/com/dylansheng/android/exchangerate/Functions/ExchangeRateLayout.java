@@ -7,11 +7,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.dylansheng.android.exchangerate.Activity.MainActivity;
+import com.dylansheng.android.exchangerate.Currency.Currency;
 import com.dylansheng.android.exchangerate.CustomizedAdapter.ExchangeRateVerticalAdaptor;
+import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
+import com.dylansheng.android.exchangerate.DataProcessing.ParseJSON;
 import com.dylansheng.android.exchangerate.Decoration.DividerItemDecoration;
 import com.dylansheng.android.exchangerate.Listener.ClickListener;
 import com.dylansheng.android.exchangerate.Listener.RecyclerTouchListener;
 import com.dylansheng.android.exchangerate.R;
+
+import org.json.JSONObject;
 
 /**
  * Created by sheng on 2017-11-15.
@@ -51,5 +56,17 @@ public class ExchangeRateLayout {
         RecyclerView.LayoutManager mLayoutManager4 = new LinearLayoutManager(activity.getApplicationContext());
         recyclerView4.setLayoutManager(mLayoutManager4);
         recyclerView4.setAdapter(adapter4);
+    }
+
+    public class MyThread implements Runnable {
+        public void run() {
+            try {
+                String response = FixerIO.GetReferenceRates("https://api.fixer.io/latest");
+                JSONObject obj = new JSONObject(response);
+                Currency currency = ParseJSON.ParseFixerIOReferenceRate(obj);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

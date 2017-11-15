@@ -1,13 +1,9 @@
 package com.dylansheng.android.exchangerate.Activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,17 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.dylansheng.android.exchangerate.Currency.Currency;
-import com.dylansheng.android.exchangerate.CustomizedAdapter.ExchangeRateVerticalAdaptor;
 import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
 import com.dylansheng.android.exchangerate.DataProcessing.ParseJSON;
-import com.dylansheng.android.exchangerate.Decoration.DividerItemDecoration;
 import com.dylansheng.android.exchangerate.Functions.ExchangeRateLayout;
-import com.dylansheng.android.exchangerate.Listener.ClickListener;
-import com.dylansheng.android.exchangerate.Listener.RecyclerTouchListener;
 import com.dylansheng.android.exchangerate.R;
 
 import org.json.JSONObject;
@@ -96,12 +88,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        ViewFlipper vf = (ViewFlipper)findViewById(R.id.vf);
 
         if (id == R.id.nav_exchange_rate) {
             //Runnable r = new MyThread();
             //new Thread(r).start();
 
-            ViewFlipper vf = (ViewFlipper)findViewById(R.id.vf);
             vf.setDisplayedChild(1);
 
             ExchangeRateLayout.SetExchangeRateLayout(this);
@@ -120,17 +112,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public class MyThread implements Runnable {
-        public void run() {
-            try {
-                String response = FixerIO.GetReferenceRates("https://api.fixer.io/latest");
-                JSONObject obj = new JSONObject(response);
-                Currency currency = ParseJSON.ParseFixerIOReferenceRate(obj);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
