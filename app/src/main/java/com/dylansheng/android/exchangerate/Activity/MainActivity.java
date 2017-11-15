@@ -1,5 +1,6 @@
 package com.dylansheng.android.exchangerate.Activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,12 +15,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.dylansheng.android.exchangerate.Currency.Currency;
 import com.dylansheng.android.exchangerate.CustomizedAdapter.ExchangeRateVerticalAdaptor;
 import com.dylansheng.android.exchangerate.DataProcessing.FixerIO;
 import com.dylansheng.android.exchangerate.DataProcessing.ParseJSON;
+import com.dylansheng.android.exchangerate.Decoration.DividerItemDecoration;
+import com.dylansheng.android.exchangerate.Functions.ExchangeRateLayout;
+import com.dylansheng.android.exchangerate.Listener.ClickListener;
+import com.dylansheng.android.exchangerate.Listener.RecyclerTouchListener;
 import com.dylansheng.android.exchangerate.R;
 
 import org.json.JSONObject;
@@ -98,47 +104,7 @@ public class MainActivity extends AppCompatActivity
             ViewFlipper vf = (ViewFlipper)findViewById(R.id.vf);
             vf.setDisplayedChild(1);
 
-            String[] data = {"AUD","BGN","BRL","CAD","CHF","CNY","CZK","DKK","GBP","HKD","HRK","HUF","IDR","ILS","INR","JPY","KRW","MXN","MYR","NOK","NZD","PHP","PLN","RON","RUB","SEK","SGD","THB","TRY","USD","ZAR" };
-
-            ExchangeRateVerticalAdaptor adapter1 = new ExchangeRateVerticalAdaptor(data);
-            RecyclerView recyclerView1 = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_1);
-            RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getApplicationContext());
-            recyclerView1.setLayoutManager(mLayoutManager1);
-            recyclerView1.setAdapter(adapter1);
-
-            ExchangeRateVerticalAdaptor adapter2 = new ExchangeRateVerticalAdaptor(data);
-            RecyclerView recyclerView2 = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_2);
-            RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
-            recyclerView2.setLayoutManager(mLayoutManager2);
-            recyclerView2.setAdapter(adapter2);
-
-            ExchangeRateVerticalAdaptor adapter3 = new ExchangeRateVerticalAdaptor(data);
-            RecyclerView recyclerView3 = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_3);
-            RecyclerView.LayoutManager mLayoutManager3 = new LinearLayoutManager(getApplicationContext());
-            recyclerView3.setLayoutManager(mLayoutManager3);
-            recyclerView3.setAdapter(adapter3);
-
-            ExchangeRateVerticalAdaptor adapter4 = new ExchangeRateVerticalAdaptor(data);
-            RecyclerView recyclerView4 = (RecyclerView) findViewById(R.id.ex_rate_scroll_grid_control_4);
-            RecyclerView.LayoutManager mLayoutManager4 = new LinearLayoutManager(getApplicationContext());
-            recyclerView4.setLayoutManager(mLayoutManager4);
-            recyclerView4.setAdapter(adapter4);
-
-
-            //RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
-            //mRecyclerView.setHasFixedSize(true);
-
-            // use a linear layout manager
-            //LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-            //mRecyclerView.setLayoutManager(mLayoutManager);
-
-            // specify an adapter (see also next example)
-            //mAdapter = new MyAdapter(myDataset);
-            //mRecyclerView.setAdapter(mAdapter);
-            //Intent intent = new Intent(MainActivity.this, ExchangeRateActivity.class);
-            //startActivity(intent);
+            ExchangeRateLayout.SetExchangeRateLayout(this);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -162,7 +128,6 @@ public class MainActivity extends AppCompatActivity
                 String response = FixerIO.GetReferenceRates("https://api.fixer.io/latest");
                 JSONObject obj = new JSONObject(response);
                 Currency currency = ParseJSON.ParseFixerIOReferenceRate(obj);
-                int x = 0;
             } catch (Exception e) {
                 e.printStackTrace();
             }
